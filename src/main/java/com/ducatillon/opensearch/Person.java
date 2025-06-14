@@ -1,12 +1,21 @@
 package com.ducatillon.opensearch;
 
-import org.springframework.data.elasticsearch.annotations.Document;
 
-@Document(indexName = "person")
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.springframework.stereotype.Repository;
+
+
+@Entity
+@JsonIgnoreProperties(ignoreUnknown = true) // Add this annotation
 public class Person {
+    @Id
     private Long id;
     private String firstName;
     private String lastName;
+
+    public Person() {}
 
     public Person(String firstName, String lastName, Long id) {
         this.id = id;
