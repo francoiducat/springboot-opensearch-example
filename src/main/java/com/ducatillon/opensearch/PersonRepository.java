@@ -11,4 +11,5 @@ public interface PersonRepository extends ElasticsearchRepository<Person, Long> 
 
     List<Person> findByLastName(String lastName);
     List<Person> findByFirstName(String firstName);
+    List<Person> findAll();
 }

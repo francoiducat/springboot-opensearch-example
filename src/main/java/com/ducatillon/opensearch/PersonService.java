@@ -1,5 +1,7 @@
 package com.ducatillon.opensearch;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,17 +15,15 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public void doWork() {
-
-        personRepository.deleteAll();
-
-        Person person = new Person("Oliver", "Gierke", 1L);
+    public void addPerson(Person person) {
         personRepository.save(person);
+    }
 
-        List<Person> lastNameResults = personRepository.findByLastName("Gierke");
-        List<Person> firstNameResults = personRepository.findByFirstName("Oliver");
+    public List<Person> findAllPersons() {
+        return personRepository.findAll();
+    }
 
-        System.out.println("Found " + lastNameResults.size() + " persons with last name 'Gierke'");
-        System.out.println("Persons with last name 'Gierke':" + lastNameResults.getFirst().toString());
+    public void deletePerson(Long id) {
+        personRepository.deleteById(id);
     }
 }

@@ -40,15 +40,23 @@ Once the application is running, you can interact with it using a tool like Post
 
 The PersonController provides a basic endpoint:
 
-POST /person: This endpoint will trigger the doWork() method in PersonService, which is where your OpenSearch indexing logic (or other OpenSearch operations) would reside.
+POST /person: This endpoint will trigger personService, which is where your OpenSearch indexing logic (or other OpenSearch operations) would reside.
 
 Example cURL request:
 
 ```
-curl -X POST http://localhost:8080/person
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -d '{"firstName": "John", "lastName": "Doe", "id": 1}' \
+     "http://localhost:8080/person"
 ```
 
-Check the Person document from OpenSearch:
+Get all Persons from springboot app:
+```
+curl -X GET "localhost:8080/person"
+```
+
+Get all Person documents from OpenSearch:
 ```
 curl -X GET "localhost:9200/person/_search"
 ```
