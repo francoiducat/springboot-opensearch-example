@@ -10,8 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class SearchClientConfiguration extends AbstractOpenSearchConfiguration {
 
-    @Override
-    @Bean("my-client")
+    @Bean("OsRhlClient")
     public RestHighLevelClient opensearchClient() {
 
         final ClientConfiguration clientConfiguration = ClientConfiguration.builder()
