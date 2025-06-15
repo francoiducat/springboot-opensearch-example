@@ -1,5 +1,13 @@
 # Spring Boot OpenSearch Example
-This project demonstrates how to integrate OpenSearch with a Spring Boot application. It provides a simple example of indexing and searching data using OpenSearch.
+This project demonstrates how to integrate OpenSearch with a Spring Boot application. 
+It provides a simple example of indexing and searching data using OpenSearch.
+It does not use the OpenSearch High-Level REST Client( which is deprecated), but instead uses the OpenSearchClient, which is a type-safe client built on top of the OpenSearch REST Client.
+It does not use the spring-data-opensearch library, but instead uses the OpenSearchClient directly for indexing and searching documents.
+
+Note that spring-data-opensearch loads spring-data-elasticsearch anyway, which may lead to conflicts with the OpenSearch connectivity, especially with the latest versions of OpenSearch.
+Although spring-data-opensearch follows springboot and spring-data-elasticsearch release cycles, compatibility issues with OpenSearch may arise due to the differences in how OpenSearch and Elasticsearch handle certain features and configurations.
+
+This repository aims to clarify opensearch connectivity issues with springboot and spring-data-elasticsearch/spring-data-open-search, and to provide a simple example of how to use OpenSearch with Spring Boot.
 
 # Prerequisites
 
@@ -11,6 +19,18 @@ This project demonstrates how to integrate OpenSearch with a Spring Boot applica
 - Docker (Recommended): The easiest way to get OpenSearch running locally is via Docker.
 ```bash
 docker run -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" opensearchproject/opensearch:2.17.1
+```
+
+Alternatively, you can use the docker-compose file provided in this repository to start OpenSearch:
+
+```bash
+docker-compose up opensearch
+```
+
+and OpenSearch Dashboards:
+
+```bash
+docker-compose up opensearch-dashboards
 ```
 
 # Getting Started
@@ -42,9 +62,13 @@ The PersonController provides basic endpoints:
 
 ## POST Person
 
-This endpoint will trigger SearchService, which is where your OpenSearch indexing logic would reside.
+This endpoint will trigger SearchService, which is where OpenSearch indexing logic would reside.
 
 Example cURL request:
+
+## Add a Person
+
+Add a new Person:
 
 ```
 curl -X POST \
