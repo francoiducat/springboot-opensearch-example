@@ -18,7 +18,7 @@ docker run -p 9200:9200 -p 9600:9600 -e "discovery.type=single-node" opensearchp
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/springboot-opensearch-example.git
+git clone https://github.com/francoiducat/springboot-opensearch-example.git
 cd springboot-opensearch-example
 ```
 
@@ -38,9 +38,11 @@ mvn spring-boot:run
 
 Once the application is running, you can interact with it using a tool like Postman or curl.
 
-The PersonController provides a basic endpoint:
+The PersonController provides basic endpoints:
 
-POST /person: This endpoint will trigger personService, which is where your OpenSearch indexing logic (or other OpenSearch operations) would reside.
+## POST Person
+
+This endpoint will trigger SearchService, which is where your OpenSearch indexing logic would reside.
 
 Example cURL request:
 
@@ -51,16 +53,33 @@ curl -X POST \
 "http://localhost:8080/persons"
 ```
 
+## GET Persons by id
 
 Get all Persons from springboot app:
+
 ```
 curl -X GET "localhost:8080/persons/id"
 ```
 
-Get all Person documents from OpenSearch:
+You can also ge all person documents from OpenSearch directly:
+
 ```
 curl -X GET "localhost:9200/person/_search"
 ```
+
+# RestClient vs OpenSearchClient vs Rest High-Level Client
+
+## RestClient 
+is a low-level client that provides a way to interact with OpenSearch using HTTP requests.
+It is suitable for simple use cases and provides basic functionality for indexing and searching documents.
+
+## OpenSearchClient
+is a higher-level client that provides a more convenient API for interacting with OpenSearch.
+type-safe OpenSearchClient that builds upon opensearch-rest-client to offer a more convenient and robust way to interact with OpenSearch.
+
+## Rest High-Level Client
+is a deprecated client that was used in earlier versions of OpenSearch.
+It is not recommended for new projects.
 
 # Contributing
 Feel free to fork this repository, create your feature branch, and send a pull request!
@@ -68,3 +87,4 @@ Feel free to fork this repository, create your feature branch, and send a pull r
 # Acknowledgments
 Spring Boot Documentation
 OpenSearch Documentation
+https://docs.opensearch.org/docs/latest/clients/java/
