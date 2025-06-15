@@ -46,14 +46,15 @@ Example cURL request:
 
 ```
 curl -X POST \
-     -H "Content-Type: application/json" \
-     -d '{"firstName": "John", "lastName": "Doe", "id": 1}' \
-     "http://localhost:8080/person"
+-H "Content-Type: application/json" \
+-d '{"firstName": "John", "lastName": "Doe", "id": 1}' \
+"http://localhost:8080/persons"
 ```
+
 
 Get all Persons from springboot app:
 ```
-curl -X GET "localhost:8080/person"
+curl -X GET "localhost:8080/persons/id"
 ```
 
 Get all Person documents from OpenSearch:
