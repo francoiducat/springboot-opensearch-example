@@ -55,7 +55,7 @@ curl -X POST \
 
 ## GET Persons by id
 
-Get all Persons from springboot app:
+Get a Person by id from springboot app:
 
 ```
 curl -X GET "localhost:8080/persons/id"
@@ -70,15 +70,15 @@ curl -X GET "localhost:9200/person/_search"
 # RestClient vs OpenSearchClient vs Rest High-Level Client
 
 ## RestClient 
-is a low-level client that provides a way to interact with OpenSearch using HTTP requests.
+**RestClient** is a low-level client that provides a way to interact with OpenSearch using HTTP requests.
 It is suitable for simple use cases and provides basic functionality for indexing and searching documents.
 
 ## OpenSearchClient
-is a higher-level client that provides a more convenient API for interacting with OpenSearch.
+**OpenSearchClient** is a higher-level client that provides a more convenient API for interacting with OpenSearch.
 type-safe OpenSearchClient that builds upon opensearch-rest-client to offer a more convenient and robust way to interact with OpenSearch.
 
 ## Rest High-Level Client
-is a deprecated client that was used in earlier versions of OpenSearch.
+**Rest High-Level Client** is a deprecated client that was used in earlier versions of OpenSearch.
 It is not recommended for new projects.
 
 # Contributing
